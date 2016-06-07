@@ -13,13 +13,13 @@ RUN apt-get update && apt-get install -y \
     pip install scikit-learn==0.17.1
 
 # Installation
-RUN mkdir /home/vmaf && cd /home/vmaf && \
-    git clone https://github.com/Netflix/vmaf . && \
+RUN mkdir /home/vmaf 
+WORKDIR /home/vmaf
+RUN git clone https://github.com/Netflix/vmaf . && \
     make
+ENV PYTHONPATH=/home/vmaf/python:$PYTHONPATH
 
 # Testing
-RUN export PYTHONPATH=/home/vmaf/python:$PYTHONPATH && \
-    cd /home/vmaf && \
-    ./unittest
+RUN ./unittest
 
 CMD ["bash"]
