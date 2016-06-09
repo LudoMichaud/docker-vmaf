@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
         python-matplotlib \
         python-pandas && \
     rm -rf /var/lib/apt/lists/* && \
-    pip install scikit-learn==0.17.1
+    pip install --upgrade scikit-learn
 
 # Installation
 RUN mkdir /home/vmaf 
